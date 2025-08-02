@@ -3,6 +3,8 @@
 It's my first **React** project and it's a simple music player that lets you play songs, adjust volume, and even add your own music with custom covers.  
 It uses **react-slick** for a smooth carousel view of the songs.
 
+You can test it on this **[Website](https://httpzeni.github.io/Music-Player-React/)**
+
 ---
 
 ## Features ✨
