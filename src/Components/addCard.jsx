@@ -12,23 +12,35 @@ function AddCard({ musicData, setMusicData }){
     setVisible(!visible);
   }
 
-  function Submit(e){
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+    });
+  }
+
+
+  async function Submit(e){
     
     e.preventDefault();
+
+    const coverBase64 = coverFile ? await fileToBase64(coverFile) : null;
+    const songBase64 = songFile ? await fileToBase64(songFile) : null;
 
     const newSong = {
       id: musicData.length,
       songTitle: songName,
       songAuthor: authorName,
-      cover: coverFile ? URL.createObjectURL(coverFile) : null,
-      audioSource: songFile ? URL.createObjectURL(songFile) : null,
+      cover: coverBase64,
+      audioSource: songBase64,
       spotifyLink: spotifyLink
     };
 
     setMusicData([...musicData, newSong]);
     setVisible(false);
   }
-
 
   return (
     <>
